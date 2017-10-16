@@ -1,0 +1,144 @@
+<html>
+
+<head>
+    <title>Lista</title>
+    <link href="webjars/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+
+            <div th:if="${saveUser eq 'unsuccess'}">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Blad!</strong> Nie zapisano uzytkownika!
+                </div>
+            </div>
+            <div th:if="${saveUser eq 'success'}">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <strong>Sukces!</strong> Zapisano uzytkownika!
+                </div>
+            </div>
+
+            <div th:if="${deletion eq 'unsuccess'}">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Blad!</strong> Uzytkownik nie zostal usuniety!
+                </div>
+            </div>
+            <div th:if="${deletion eq 'success'}">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <strong>Sukces!</strong> Uzytkownik zostal usuniety!
+                </div>
+            </div>
+
+            <div th:if="${status eq 'notfound'}">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Blad!</strong> Cos poszlo nie tak. Nie znaleziono uzytkownika.
+                </div>
+            </div>
+            <div th:if="${edit eq 'unsuccess'}">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Blad!</strong> Uzytkownik nie zostal zedytowany.
+                </div>
+            </div>
+            <div th:if="${edit eq 'success'}">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <strong>Sukces!</strong> Uzytkownik zostal zedytowany.
+                </div>
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Dodaj uzytkownika</h3>
+                </div>
+                <div class="panel-body">
+                    <form th:action="@{/save}" action="#" method="post">
+                        <input type="text" name="imie" th:value="${user.imie}" class="form-control" placeholder="Imie"/>
+                        <div style="clear:both; display:block;height:10px;"></div>
+                        <input type="text" name="nazwisko" th:value="${user.nazwisko}" class="form-control" placeholder="Nazwisko"/>
+                        <div style="clear:both; display:block;height:10px;"></div>
+                        <input type="text" name="adres" th:value="${user.adres}" class="form-control" placeholder="Email"/>
+                        <div style="clear:both; display:block;height:10px;"></div>
+                        <input type="text" name="ulica" th:value="${user.ulica}" class="form-control" placeholder="Ulica"/>
+                        <div style="clear:both; display:block;height:10px;"></div>
+                        <input type="text" name="nr_domu" th:value="${user.nr_domu}" class="form-control" placeholder="Nr domu"/>
+                        <div style="clear:both; display:block;height:10px;"></div>
+                        <input type="text" name="miasto" th:value="${user.miasto}" class="form-control" placeholder="Miasto"/>
+                        <div style="clear:both; display:block;height:10px;"></div>
+                        <input type="text" name="model" th:value="${user.model}" class="form-control" placeholder="Model samochodu"/>
+                        <div style="clear:both; display:block;height:10px;"></div>
+                        <input type="text" name="marka" th:value="${user.marka}" class="form-control" placeholder="Marka samochodu"/>
+                        <div style="clear:both; display:block;height:10px;"></div>
+                        <input type="submit" class="btn btn-danger pull-right" value="Dodaj">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row"  style="margin-bottom:50px;">
+        <div class="col-md-offset-1 col-md-10">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Wszyscy uzytkownicy</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr class="btn-success">
+                            <th>Id</th>
+                            <th>Imie</th>
+                            <th>Nazwisko</th>
+                            <th>Opcje</th>
+                            <th>Email</th>
+                            <th>Ulica</th>
+                            <th>Nr domu</th>
+                            <th>Miasto</th>
+                            <th>Model samochodu</th>
+                            <th>Marka samochodu</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${#lists.isEmpty(users)}" class="btn-warning">
+                            <td colspan="4" align="center">Brak uzytkownikow!!!</td>
+                        </tr>
+                        <tr th:each="us : ${users}">
+                            <td th:text="${us.id}"></td>
+                            <td th:text="${us.imie}"></td>
+                            <td th:text="${us.nazwisko}"></td>
+
+                            <td align="center">
+                                <a th:href="@{/edit/{id}(id=${us.id})}"><span class="glyphicon glyphicon-pencil"></span></a> &nbsp; &nbsp;
+                                <a th:href="@{/delete/{id}(id=${us.id})}"><span class="glyphicon glyphicon-remove"></span></a> &nbsp; &nbsp;
+                                <a th:href="@{/read/{id}(id=${us.id})}"><span class="glyphicon glyphicon-zoom-in"></span></a>
+                            </td>
+                            <td th:text="${us.adres}"></td>
+                            <td th:text="${us.ulica}"></td>
+                            <td th:text="${us.nr_domu}"></td>
+                            <td th:text="${us.miasto}"></td>
+                            <td th:text="${us.model}"></td>
+                            <td th:text="${us.marka}"></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <br>
+                    <center>@SYLVERWOLF@</center>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

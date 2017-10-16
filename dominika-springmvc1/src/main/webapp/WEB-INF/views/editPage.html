@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <title>Edycja</title>
+    <link href="webjars/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="webjars/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+
+                <div th:if="${saveUser eq 'unsuccess'}">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <strong>Blad!</strong> Uzytkownik nie zostal zmodyfikowany.
+                    </div>
+                </div>
+                <div th:if="${saveUser eq 'success'}">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <strong>Sukces!</strong> Uzytkownik zostal zmodyfikowany.
+                    </div>
+                </div>
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Edytuj uzytkownika</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form th:action="@{/editPage}" action="#" method="post">
+                            <input type="hidden" name="id" th:value="${editUser.id}" class="form-control" placeholder="id"/>
+                            <input type="hidden" name="id" th:value="${editUser.id_adres}" class="form-control"
+                                   placeholder="Id"/>
+                            <input type="hidden" name="id" th:value="${editUser.id_marki}" class="form-control"
+                                   placeholder="Id"/>
+                            <input type="hidden" name="id" th:value="${editUser.id_emaila}" class="form-control"
+                                   placeholder="Id"/>
+                            <input type="hidden" name="id" th:value="${editUser.id_samochodu}" class="form-control"
+                                   placeholder="Id"/>
+                            <div style="clear:both; display:block;height:10px;"></div>
+                            <input type="text" name="imie" th:value="${editUser.imie}" class="form-control" placeholder="Imie"/>
+                            <div style="clear:both; display:block;height:10px;"></div>
+                            <input type="text" name="nazwisko" th:value="${editUser.nazwisko}" class="form-control" placeholder="Nazwisko"/>
+                            <div style="clear:both; display:block;height:10px;"></div>
+                            <input type="text" name="adres" th:value="${editUser.adres}" class="form-control" placeholder="Email"/>
+                            <div style="clear:both; display:block;height:10px;"></div>
+                            <input type="text" name="ulica" th:value="${editUser.ulica}" class="form-control" placeholder="Ulica"/>
+                            <div style="clear:both; display:block;height:10px;"></div>
+                            <input type="text" name="nr_domu" th:value="${editUser.nr_domu}" class="form-control" placeholder="Nr domu"/>
+                            <div style="clear:both; display:block;height:10px;"></div>
+                            <input type="text" name="miasto" th:value="${editUser.miasto}" class="form-control" placeholder="Miasto"/>
+                            <div style="clear:both; display:block;height:10px;"></div>
+                            <input type="text" name="marka" th:value="${editUser.marka}" class="form-control" placeholder="Marka samochodu"/>
+                            <div style="clear:both; display:block;height:10px;"></div>
+                            <input type="text" name="model" th:value="${editUser.model}" class="form-control" placeholder="Model samochodu"/>
+                            <div style="clear:both; display:block;height:10px;"></div>
+                            <input type="submit" class="btn btn-danger pull-right" value="Edytuj">
+                        </form>
+                    </div>
+
+                        <a th:href="@{/home}" class="btn btn-success">Powrot</a>
+                    <br>
+                    <br>
+                    <center>@SYLVERWOLF@</center>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

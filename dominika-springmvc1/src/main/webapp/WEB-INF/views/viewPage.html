@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title>Lista</title>
+    <link href="webjars/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen"> </link>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="webjars/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<body>
+<div class="row"  style="margin-bottom:50px;">
+<div class="container">
+    <div class="col-md-offset-1 col-md-10">
+        <div class="panel panel-success">
+<div class="panel-heading">
+    <h3 class="panel-title">Wyswietl uzytkownika</h3>
+</div>
+<div class="panel-body">
+    <table class="table table-bordered">
+        <thead>
+        <tr class="btn-success">
+            <th>Id</th>
+            <th>Imie</th>
+            <th>Nazwisko</th>
+            <th>Email</th>
+            <th>Ulica</th>
+            <th>nr domu</th>
+            <th>Miasto</th>
+            <th>Marka samochodu</th>
+            <th>Model samochodu</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(readUser)}" class="btn-warning">
+            <td colspan="4" align="center">Brak uzytkownikow!!!</td>
+        </tr>
+        <tr th:each="us : ${readUser}">
+            <td th:text="${us.id}"></td>
+            <td th:text="${us.imie}"></td>
+            <td th:text="${us.nazwisko}"></td>
+            <td th:text="${us.adres}"></td>
+            <td th:text="${us.ulica}"></td>
+            <td th:text="${us.nr_domu}"></td>
+            <td th:text="${us.miasto}"></td>
+            <td th:text="${us.marka}"></td>
+            <td th:text="${us.model}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <br>
+    <center>@SYLVERWOLF@</center>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
